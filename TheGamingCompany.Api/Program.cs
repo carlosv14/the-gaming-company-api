@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TheGamingCompany.Core;
 using TheGamingCompany.Core.CategoryManager;
+using TheGamingCompany.Core.LoanManager;
 using TheGamingCompany.Core.VideoGameManager;
 using TheGamingCompany.Infrastructure.Database;
 using TheGamingCompany.Infrastructure.Database.Repositories;
@@ -12,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TheGamingCompanyContext>(options => options.UseSqlite("DataSource=TheGamingCompany.db"));
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IVideoGameService, VideoGameService>();
+builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllers();

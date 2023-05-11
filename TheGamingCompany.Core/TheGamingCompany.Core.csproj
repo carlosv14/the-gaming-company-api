@@ -10,10 +10,12 @@
     <None Remove="Entities\" />
     <None Remove="CategoryManager\" />
     <None Remove="VideoGameManager\" />
+    <None Remove="LoanManager\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="CategoryManager\" />
     <Folder Include="VideoGameManager\" />
+    <Folder Include="LoanManager\" />
   </ItemGroup>
 </Project>

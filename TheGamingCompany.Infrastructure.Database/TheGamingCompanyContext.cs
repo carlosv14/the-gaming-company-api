@@ -23,6 +23,7 @@ public class TheGamingCompanyContext
         modelBuilder.ApplyConfiguration(new CategoryEntityConfiguration());
         modelBuilder.ApplyConfiguration(new GameEntityConfiguration());
         modelBuilder.ApplyConfiguration(new GamingModeEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new LoanEntityConfiguration());
     }
 }
 

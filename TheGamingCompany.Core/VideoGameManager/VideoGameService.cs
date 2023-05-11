@@ -59,6 +59,8 @@ namespace TheGamingCompany.Core.VideoGameManager
             await this.gameRepository.CommitAsync();
             return new OperationResult<Game>(entity);
         }
+
+        public OperationResult<IReadOnlyList<Game>> GetByCategory(int categoryId) => this.gameRepository.Filter(x => x.CategoryId == categoryId).ToList();
     }
 }
 

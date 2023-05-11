@@ -20,6 +20,8 @@ namespace TheGamingCompany.Core.Entities
 		public Category Category { get; set; }
 
 		public int CategoryId { get; set; }
+
+		public ICollection<Loan> Loans { get; set; }
 	}
 }
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TheGamingCompany.Infrastructure.Database;
 
@@ -10,9 +11,11 @@ using TheGamingCompany.Infrastructure.Database;
 namespace TheGamingCompany.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(TheGamingCompanyContext))]
-    partial class TheGamingCompanyContextModelSnapshot : ModelSnapshot
+    [Migration("20230511132525_Loans")]
+    partial class Loans
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");

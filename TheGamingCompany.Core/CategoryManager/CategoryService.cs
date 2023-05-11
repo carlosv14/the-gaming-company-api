@@ -26,6 +26,9 @@ namespace TheGamingCompany.Core.CategoryManager
             await this.categoryRepository.CommitAsync();
             return new OperationResult<Category>(entity);
         }
+
+        public async Task<OperationResult<IReadOnlyList<Category>>> GetAllAsync() => (await this.categoryRepository.AllAsync
+            ()).ToList();
     }
 }
 

@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TheGamingCompany.Api.DataTransferObjects;
 using TheGamingCompany.Core;
+using TheGamingCompany.Core.LoanManager;
 using TheGamingCompany.Core.VideoGameManager;
 
 namespace TheGamingCompany.Api.Controllers
@@ -12,11 +13,16 @@ namespace TheGamingCompany.Api.Controllers
     public class VideoGamesController : TheGamingCompanyBaseController
 	{
         private readonly IVideoGameService videoGameService;
+        private readonly ILoanService loanService;
         private readonly IMapper mapper;
 
-        public VideoGamesController(IVideoGameService videoGameService, IMapper mapper)
+        public VideoGamesController(
+            IVideoGameService videoGameService,
+            ILoanService loanService,
+            IMapper mapper)
         {
             this.videoGameService = videoGameService;
+            this.loanService = loanService;
             this.mapper = mapper;
         }
 
@@ -26,6 +32,22 @@ namespace TheGamingCompany.Api.Controllers
             var result = await this.videoGameService.AddAsync(this.mapper.Map<Core.Entities.Game>(gameToAdd));
             var addedGame = this.mapper.Map<GameDetailDataTransferObject>(result.Result);
             return result.Succeeded ? Ok(addedGame) : GetErrorResult<Core.Entities.Game>(result);
+        }
+
+        [HttpPost("{gameId}/loans")]
+        public async Task<IActionResult> LoanGameAsync(int gameId)
+        {
+            var result = await this.loanService.LoanGameAsync(gameId);
+            var addedGame = this.mapper.Map<LoanDetailDataTransferObject>(result.Result);
+            return result.Succeeded ? Ok(addedGame) : GetErrorResult<Core.Entities.Loan>(result);
+        }
+
+        [HttpDelete("{gameId}/loans/{loanId}")]
+        public async Task<IActionResult> ReturnGameAsync(int gameId, int loanId)
+        {
+            var result = await this.loanService.ReturnGameAsync(gameId, loanId);
+            var addedGame = this.mapper.Map<LoanDetailDataTransferObject>(result.Result);
+            return result.Succeeded ? Ok(addedGame) : GetErrorResult<Core.Entities.Loan>(result);
         }
     }
 }
