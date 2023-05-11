@@ -1,0 +1,12 @@
+/Users/cvare/Projects/TheGamingCompany/TheGamingCompany.Core/bin/Debug/net7.0/TheGamingCompany.Core.deps.json
+/Users/cvare/Projects/TheGamingCompany/TheGamingCompany.Core/bin/Debug/net7.0/TheGamingCompany.Core.dll
+/Users/cvare/Projects/TheGamingCompany/TheGamingCompany.Core/bin/Debug/net7.0/TheGamingCompany.Core.pdb
+/Users/cvare/Projects/TheGamingCompany/TheGamingCompany.Core/obj/Debug/net7.0/TheGamingCompany.Core.csproj.AssemblyReference.cache
+/Users/cvare/Projects/TheGamingCompany/TheGamingCompany.Core/obj/Debug/net7.0/TheGamingCompany.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/cvare/Projects/TheGamingCompany/TheGamingCompany.Core/obj/Debug/net7.0/TheGamingCompany.Core.AssemblyInfoInputs.cache
+/Users/cvare/Projects/TheGamingCompany/TheGamingCompany.Core/obj/Debug/net7.0/TheGamingCompany.Core.AssemblyInfo.cs
+/Users/cvare/Projects/TheGamingCompany/TheGamingCompany.Core/obj/Debug/net7.0/TheGamingCompany.Core.csproj.CoreCompileInputs.cache
+/Users/cvare/Projects/TheGamingCompany/TheGamingCompany.Core/obj/Debug/net7.0/TheGamingCompany.Core.dll
+/Users/cvare/Projects/TheGamingCompany/TheGamingCompany.Core/obj/Debug/net7.0/refint/TheGamingCompany.Core.dll
+/Users/cvare/Projects/TheGamingCompany/TheGamingCompany.Core/obj/Debug/net7.0/TheGamingCompany.Core.pdb
+/Users/cvare/Projects/TheGamingCompany/TheGamingCompany.Core/obj/Debug/net7.0/ref/TheGamingCompany.Core.dll
