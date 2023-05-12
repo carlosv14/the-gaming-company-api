@@ -42,12 +42,20 @@ namespace TheGamingCompany.Api.Controllers
             return result.Succeeded ? Ok(addedGame) : GetErrorResult<Core.Entities.Loan>(result);
         }
 
-        [HttpDelete("{gameId}/loans/{loanId}")]
-        public async Task<IActionResult> ReturnGameAsync(int gameId, int loanId)
+        [HttpDelete("{gameId}/loans")]
+        public async Task<IActionResult> ReturnGameAsync(int gameId)
         {
-            var result = await this.loanService.ReturnGameAsync(gameId, loanId);
+            var result = await this.loanService.ReturnGameAsync(gameId);
             var addedGame = this.mapper.Map<LoanDetailDataTransferObject>(result.Result);
             return result.Succeeded ? Ok(addedGame) : GetErrorResult<Core.Entities.Loan>(result);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetGameById(int id)
+        {
+            var result = this.videoGameService.GetById(id);
+            var game = this.mapper.Map<GameDetailDataTransferObject>(result.Result);
+            return result.Succeeded ? Ok(game) : GetErrorResult<Core.Entities.Game>(result);
         }
     }
 }

@@ -7,7 +7,10 @@ namespace TheGamingCompany.Core.VideoGameManager
 	{
         Task<OperationResult<Game>> AddAsync(Game game);
 
-        OperationResult<IReadOnlyList<Game>> GetByCategory(int categoryId);
+        Task<OperationResult<IReadOnlyList<Game>>> GetByCategory(int categoryId);
+
+        OperationResult<Game> GetById(int id);
+
     }
 }
 

@@ -60,7 +60,29 @@ namespace TheGamingCompany.Core.VideoGameManager
             return new OperationResult<Game>(entity);
         }
 
-        public OperationResult<IReadOnlyList<Game>> GetByCategory(int categoryId) => this.gameRepository.Filter(x => x.CategoryId == categoryId).ToList();
+        public async Task<OperationResult<IReadOnlyList<Game>>> GetByCategory(int categoryId)
+        {
+            if (categoryId == -1)
+            {
+                return (await this.gameRepository.AllAsync()).ToList();
+            }
+            return this.gameRepository.Filter(x => x.CategoryId == categoryId).ToList();
+        }
+
+        public OperationResult<Game> GetById(int id)
+        {
+            var game = this.gameRepository.GetById(id);
+            if (game is null)
+            {
+                return new OperationResult<Game>(new Error
+                {
+                    Code = ErrorCode.NotFound,
+                    Message = "The game you're trying to return doesn't exist"
+                });
+            }
+
+            return game;
+        }
     }
 }
 

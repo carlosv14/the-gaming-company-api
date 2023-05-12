@@ -36,9 +36,9 @@ public class CategoriesController : TheGamingCompanyBaseController
     }
 
     [HttpGet("{categoryId}/games")]
-    public IActionResult GetGamesByCategory(int categoryId)
+    public async Task<IActionResult> GetGamesByCategoryAsync(int categoryId)
     {
-        var result = this.videoGameService.GetByCategory(categoryId);
+        var result = await this.videoGameService.GetByCategory(categoryId);
         var games = this.mapper.Map<IList<GameDetailDataTransferObject>>(result.Result);
         return result.Succeeded ? Ok(games) : GetErrorResult<IReadOnlyList<Core.Entities.Game>>(result);
     }

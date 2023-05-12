@@ -40,7 +40,7 @@ namespace TheGamingCompany.Core.LoanManager
             return loan;
         }
 
-        public async Task<OperationResult<Loan>> ReturnGameAsync(int gameId, int loanId)
+        public async Task<OperationResult<Loan>> ReturnGameAsync(int gameId)
         {
             var game = this.gameRepository.GetById(gameId);
             if (game is null)

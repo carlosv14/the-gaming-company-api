@@ -8,6 +8,7 @@ using TheGamingCompany.Infrastructure.Database;
 using TheGamingCompany.Infrastructure.Database.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+var allowAllOriginsPolicy = "_allowAllOriginsPolicy";
 
 // Add services to the container.
 builder.Services.AddDbContext<TheGamingCompanyContext>(options => options.UseSqlite("DataSource=TheGamingCompany.db"));
@@ -16,6 +17,14 @@ builder.Services.AddScoped<IVideoGameService, VideoGameService>();
 builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: allowAllOriginsPolicy,
+                      policy =>
+                      {
+                          policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                      });
+});
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -30,6 +39,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(allowAllOriginsPolicy);
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
