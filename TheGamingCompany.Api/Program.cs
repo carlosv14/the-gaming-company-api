@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TheGamingCompany.Core;
 using TheGamingCompany.Core.CategoryManager;
+using TheGamingCompany.Core.ConversationalLanguageInterpreter;
 using TheGamingCompany.Core.LoanManager;
+using TheGamingCompany.Core.Options;
 using TheGamingCompany.Core.VideoGameManager;
 using TheGamingCompany.Infrastructure.Database;
 using TheGamingCompany.Infrastructure.Database.Repositories;
@@ -15,6 +16,8 @@ builder.Services.AddDbContext<TheGamingCompanyContext>(options => options.UseSql
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IVideoGameService, VideoGameService>();
 builder.Services.AddScoped<ILoanService, LoanService>();
+builder.Services.Configure<LanguageInterpreterOptions>(builder.Configuration.GetSection(LanguageInterpreterOptions.ConfigurationKey));
+builder.Services.AddHttpClient<ILanguageInterpreter, LanguageInterpreter>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddCors(options =>
