@@ -14,18 +14,15 @@ public class CategoriesController : TheGamingCompanyBaseController
 {
     private readonly ICategoryService categoryService;
     private readonly IVideoGameService videoGameService;
-    private readonly ILanguageInterpreter _languageInterpreter;
     private readonly IMapper mapper;
 
     public CategoriesController(
         ICategoryService categoryService,
         IVideoGameService videoGameService,
-        ILanguageInterpreter languageInterpreter,
         IMapper mapper)
     {
         this.categoryService = categoryService;
         this.videoGameService = videoGameService;
-        _languageInterpreter = languageInterpreter;
         this.mapper = mapper;
     }
 
@@ -42,7 +39,6 @@ public class CategoriesController : TheGamingCompanyBaseController
     [HttpGet("{categoryId}/games")]
     public async Task<IActionResult> GetGamesByCategoryAsync(int categoryId)
     {
-        await _languageInterpreter.InterpretAsync("Buy 2 pepperoni pizzas");
         var result = await this.videoGameService.GetByCategory(categoryId);
         var games = this.mapper.Map<IList<GameDetailDataTransferObject>>(result.Result);
         return result.Succeeded ? Ok(games) : GetErrorResult<IReadOnlyList<Core.Entities.Game>>(result);
@@ -53,7 +49,7 @@ public class CategoriesController : TheGamingCompanyBaseController
     {
         var result = await this.categoryService.GetAllAsync();
         var categories = this.mapper.Map<IList<CategoryDetailDataTransferObject>>(result.Result);
-        return result.Succeeded ? Ok(categories) : GetErrorResult<IReadOnlyList<Core.Entities.Category>>(result);
+        return result.Succeeded ? Ok(categories) : GetErrorResult(result);
     }
 }
 
